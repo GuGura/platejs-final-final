@@ -6,6 +6,8 @@ import {plugins} from "@/lib/plate/plate-plugins";
 import {HTML5Backend} from "react-dnd-html5-backend";
 import {MentionCombobox} from "@/components/plate-ui/mention-combobox";
 import {MENTIONABLES} from "@/lib/plate/mentionables";
+import {FloatingToolbar} from "@/components/plate-ui/floating-toolbar";
+import {FloatingToolbarButtons} from "@/components/plate-ui/floating-toolbar-buttons";
 
 const initialValue = [
   {
@@ -17,15 +19,23 @@ const initialValue = [
     ],
   },
 ];
-export default function PlateEditor() {
+type PlateEditorProps = {
+  type?: 'comment' | 'post'
+  readonly?: boolean
+}
+export default function PlateEditor({type = 'post', readonly = false}: PlateEditorProps) {
   return (
     <DndProvider backend={HTML5Backend}>
       <Plate initialValue={initialValue} plugins={plugins}>
-        <Editor className="px-[96px] py-16"
-                autoFocus
-                focusRing={false}
-                variant="ghost"
-                size="md"/>
+        <Editor
+          className="px-10 py-5"
+          autoFocus
+          focusRing={false}
+          variant="ghost"
+          size="md"/>
+        <FloatingToolbar>
+          <FloatingToolbarButtons/>
+        </FloatingToolbar>
         <MentionCombobox items={MENTIONABLES}/>
       </Plate>
     </DndProvider>
