@@ -9,9 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@radix-ui/react-popover": "^1.0.7",
     "@radix-ui/react-tooltip": "^1.0.7",
     "@udecode/plate": "^25.0.1",
+    "@udecode/plate-combobox": "^25.0.1",
     "@udecode/plate-dnd": "^25.0.1",
+    "@udecode/plate-floating": "^25.0.1",
+    "@udecode/plate-mention": "^25.0.1",
     "@udecode/plate-node-id": "^25.0.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
