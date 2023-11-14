@@ -9,6 +9,7 @@ import {
 import { useEditorReadOnly } from '@udecode/plate-common';
 
 import { Icons } from '@/components/icons';
+import { LinkToolbarButton } from '@/components/plate-ui/link-toolbar-button';
 
 import { MarkToolbarButton } from './mark-toolbar-button';
 import { MoreDropdownMenu } from './more-dropdown-menu';
@@ -22,7 +23,6 @@ export function FloatingToolbarButtons() {
       {!readOnly && (
         <>
           <TurnIntoDropdownMenu />
-
           <MarkToolbarButton nodeType={MARK_BOLD} tooltip="Bold (⌘+B)">
             <Icons.bold />
           </MarkToolbarButton>
@@ -44,10 +44,12 @@ export function FloatingToolbarButtons() {
           <MarkToolbarButton nodeType={MARK_CODE} tooltip="Code (⌘+E)">
             <Icons.code />
           </MarkToolbarButton>
+
+          <LinkToolbarButton />
+          <MoreDropdownMenu />
         </>
       )}
 
-      <MoreDropdownMenu />
     </>
   );
 }

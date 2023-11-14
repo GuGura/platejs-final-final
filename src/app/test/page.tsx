@@ -1,6 +1,7 @@
+'use client'
 import PlateEditor from "@/components/plate-editor";
 
-export default async function page() {
+export default function page() {
   return (
     <div className={'container pb-8 pt-6 md:py-10 items-center'}>
       <div className="flex max-w-[980px] flex-col items-start gap-2">
@@ -17,6 +18,7 @@ export default async function page() {
       <div className="max-w-[1336px] rounded-lg border bg-background shadow">
         <PlateEditor/>
       </div>
+      <button className={'px-4 py-1 border border-gray-300 rounded mt-3'}>Save</button>
     </div>
   )
 }

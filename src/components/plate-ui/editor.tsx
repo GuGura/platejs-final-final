@@ -63,24 +63,24 @@ const Editor = React.forwardRef<HTMLDivElement, EditorProps>(
   ) => {
     return (
       <div ref={ref} className="relative w-full">
-    <PlateContent
-      className={cn(
-        editorVariants({
-      disabled,
-      focused,
-      focusRing,
-      size,
-      variant,
-    }),
-      className
-  )}
-    disableDefaultStyles
-    readOnly={disabled ?? readOnly}
-    aria-disabled={disabled}
-    {...props}
-    />
-    </div>
-  );
+        <PlateContent
+          className={cn(
+            editorVariants({
+              disabled,
+              focused,
+              focusRing,
+              size,
+              variant,
+            }),
+            className
+          )}
+          disableDefaultStyles
+          readOnly={disabled ?? readOnly}
+          aria-disabled={disabled}
+          {...props}
+        />
+      </div>
+    );
   }
 );
 Editor.displayName = 'Editor';

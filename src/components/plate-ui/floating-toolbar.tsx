@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { PortalBody, useComposedRef } from '@udecode/plate-common';
+import {PortalBody, useComposedRef, useEditorReadOnly} from '@udecode/plate-common';
 import {
   flip,
   FloatingToolbarState,
@@ -49,9 +49,9 @@ const FloatingToolbar = React.forwardRef<
   } = useFloatingToolbar(floatingToolbarState);
 
   const ref = useComposedRef<HTMLDivElement>(componentRef, floatingRef);
-
+  const readOnly = useEditorReadOnly();
   if (hidden) return null;
-
+  if (readOnly) return  null
   return (
     <PortalBody>
       <Toolbar
