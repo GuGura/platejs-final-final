@@ -1,5 +1,8 @@
-'use client'
+'use client';
 import PlateEditor from "@/components/plate-editor";
+import {getPost} from "@/api/client/plateService";
+import {Button} from "@/components/plate-ui/button";
+import ButtonSave from "@/components/components/Button";
 
 export default function page() {
   return (
@@ -18,7 +21,7 @@ export default function page() {
       <div className="max-w-[1336px] rounded-lg border bg-background shadow">
         <PlateEditor/>
       </div>
-      <button className={'px-4 py-1 border border-gray-300 rounded mt-3'}>Save</button>
+      <ButtonSave/>
     </div>
   )
 }

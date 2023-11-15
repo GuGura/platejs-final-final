@@ -1,8 +1,7 @@
 'use client';
 
-import React, {useMemo, useRef} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {Plate} from '@udecode/plate-common';
-import {ELEMENT_PARAGRAPH} from '@udecode/plate-paragraph';
 import {DndProvider} from 'react-dnd';
 import {HTML5Backend} from 'react-dnd-html5-backend';
 
@@ -16,41 +15,34 @@ import {FixedToolbarButtons} from '@/components/plate-ui/fixed-toolbar-buttons';
 import {FloatingToolbar} from '@/components/plate-ui/floating-toolbar';
 import {FloatingToolbarButtons} from '@/components/plate-ui/floating-toolbar-buttons';
 import {MentionCombobox} from '@/components/plate-ui/mention-combobox';
+import {usePlateStore} from "@/store/plate-store";
+import {ELEMENT_PARAGRAPH} from "@udecode/plate-paragraph";
+
 
 interface Operation {
   type: string;
   // other properties...
 }
 
+const initialValue = [
+  {
+    id: '1',
+    type: ELEMENT_PARAGRAPH, // Assuming ELEMENT_PARAGRAPH is a string constant or variable
+    children: [{text: 'A line of text in a paragraph.'}],
+  },
+]
 export default function PlateEditor() {
   const containerRef = useRef(null);
-
-  const initialValue = useMemo(() => {
-    const storedContent = localStorage.getItem('content') || undefined;
-    if (!storedContent) {
-      return [
-        {
-          id: '1',
-          type: ELEMENT_PARAGRAPH,
-          children: [{text: 'A line of text in a paragraph.'}],
-        },
-      ];
-    } else {
-      return JSON.parse(storedContent)
-    }
-
-  }, []);
-
+  const [value, setValue] = usePlateStore(state => [state.value, state.setValue])
+  const [plateValue, setPlateValue] = useState(()=>value)
   return (
     <DndProvider backend={HTML5Backend}>
       <Plate
         plugins={plugins}
-        initialValue={initialValue}
-        onChange={value => {
-          // Save the value to Local Storage.
-          const content = JSON.stringify(value)
-          localStorage.setItem('content', content)
-        }}>
+        initialValue={value}
+        onChange={value =>
+          setValue(value)
+        }>
         <div
           ref={containerRef}
           className={cn(
