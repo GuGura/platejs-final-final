@@ -1,7 +1,5 @@
 'use client';
 import PlateEditor from "@/components/plate-editor";
-import {getPost} from "@/api/client/plateService";
-import {Button} from "@/components/plate-ui/button";
 import ButtonSave from "@/components/components/Button";
 
 export default function page() {
