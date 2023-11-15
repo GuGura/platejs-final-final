@@ -9,6 +9,7 @@ type State = {
 type Action = {
   setValue: (value: any) => void;
   requestPost: (value: any) => Promise<void>;
+  redirect: (value: boolean) => void;
   reset: () => void;
 };
 
@@ -31,7 +32,13 @@ export const usePlateStore = create<PlateSlice>((set, get) => ({
   },
   requestPost: async () =>{
     console.log(get().value)
-    await SavePost(get().value)
+    const res = await SavePost(get().value)
+    get().redirect(res.status < 400);
+  },
+  redirect: (value) =>{
+    if (value) {
+      window.location.href = "/"
+    }
   },
   reset: () => set(initialState),
 }));
